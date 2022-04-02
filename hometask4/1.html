@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Homework</title>
+</head>
+
+<body>
+  <!--
+Обязательное задание.
+
+Необходимо данное задание выполнить в es5 стиле и в es6 стиле.
+Необходимо создать функцию-конструктор/класс для продукта.
+Названия: `ProductES5` для es5 стиля, `ProductES6` для es6 стиля.
+При создании объекта от функции-конструктора/класса необходимо передавать имя
+и цену товара, эта информация должна быть сохранена в объекте.
+Также у объекта должна быть возможность выполнить метод `make25Discount`, данный
+метод должен уменьшать стоимость продукта на 25%.
+Необходимо продемонстрировать работу с объектом (в свободной форме).
+-->
+  <script>
+    "use strict";
+    // Задача 1. Объект для стиля es5.
+
+    function ProductES5(name, cost) {
+      this.name = name;
+      this.cost = cost;
+    }
+
+    const table = new ProductES5('Хромоножка', 150);
+    console.log(table);
+
+    /* Вариант, где метод не изменяет стоимость внутри объекта.
+    ProductES5.prototype.make25Discount = function () {
+      return this.cost * 0.75;
+    }
+    console.log(table)
+    console.log(`Во время распродажи стол ${table.name} стал стоить ${table.make25Discount()}$.`)
+    */
+
+    //Добавляем метод make25Discount в прототип объекта. 
+    ProductES5.prototype.make25Discount = function () {
+      this.cost *= 0.75;
+    }
+
+    console.log(`Стол ${table.name} стоит ${table.cost}$.`);
+    table.make25Discount();
+    console.log(`Во время распродажи стол ${table.name} стоит ${table.cost}$.`);
+
+
+    // Задача 2. Объект для стиля es6.
+
+    class ProductES6 {
+      constructor(name, cost) {
+        this.name = name;
+        this.cost = cost;
+      }
+
+      make25Discount() {
+        this.cost *= 0.75;
+      }
+    }
+
+    const chair = new ProductES6('Неваляшка', 80);
+    console.log(chair);
+
+    console.log(`Стул ${chair.name} стоит ${chair.cost}$.`);
+    chair.make25Discount();
+    console.log(`Во время распродажи стул ${chair.name} стоит ${chair.cost}$.`);
+
+  </script>
+</body>
+
+</html>
