@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+    crossorigin="anonymous" />
+  <style>
+    i {
+      font-size: 50px;
+    }
+
+    .golden {
+      color: gold;
+    }
+  </style>
+</head>
+
+<body>
+  <!--
+Обязательное задание.
+
+Выполнить все задачи в теге script. Комментарии, в которых написаны задачи, не
+стирать, код с решением задачи пишем под комментарием.
+-->
+
+  <div class="stars_container">
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+  </div>
+
+  <script>
+    "use strict";
+
+    /*
+    1. При наведении на любую из звезд, данной звезде должен ставиться класс
+    golden, также такой класс должен ставиться всем звездам до нее слева.
+    */
+
+    const divStarsEl = document.querySelector('.stars_container');
+    const startsEkl = document.querySelectorAll('i');
+
+    divStarsEl.addEventListener('mouseover', event => {
+      if (event.target.tagName !== 'I') {
+        return;
+      }
+      let star = event.target;
+      while (star) {
+        star.classList.add('golden');
+        star = star.previousElementSibling;
+      }
+    });
+
+    /*
+    2. Когда мы уводим курсор мыши от звезды, все поставленные классы из первого
+    задания должны быть удалены.
+     */
+
+    divStarsEl.addEventListener('mouseout', event => {
+      if (event.target.tagName !== 'I') {
+        return;
+      }
+      let star = event.target;
+      while (star) {
+        star.classList.remove('golden');
+        star = star.previousElementSibling;
+      }
+
+    });
+
+    /*
+    3. Когда мы переводим мышь от одной звезды к другой, у нас могут мигать
+    звезды (временно могут становиться черными). Почему так? Напишите словами.
+    Можем ли мы это исправить? Если да, то предложите решение.
+    */
+
+    /* Это проиходит из-за того, что после того как курсор переходит от одной
+    звезду к другой, он попадает в див, и отрабатывается код из-второго задания,
+    который удаляет у всех звезд класс 'golden'. А попадая на следующую звезду,
+    опять добавляет все звездам слева этот класс. Из-за этого и происходит
+    мигание.
+    Как это можно исправить, идей нет.
+    */
+
+
+  </script>
+</body>
+
+</html>
